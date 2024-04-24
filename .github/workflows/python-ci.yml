@@ -14,24 +14,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@v3  # Ensure this is the latest version
+        
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4  # This is updated for Node.js 20
         with:
-          python-version: '3.8'  
-
+          python-version: '3.8'
+        
       - name: Install dependencies
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
           pip install pytest
-
+          
       - name: Run tests
         run: |
           source venv/bin/activate
-          pytest test_greet.py
+          pytest tests/test_greet.py
